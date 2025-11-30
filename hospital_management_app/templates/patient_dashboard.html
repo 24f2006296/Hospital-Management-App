@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="{{ url_for('patient_dashboard') }}" class="right">Home</a>
+        <a href="{{ url_for('patient_profile') }}" class="right">My Profile</a>
+        <a href="{{ url_for('logout') }}" class="right">Logout</a>
+    </div>
+    <h1> Welcome, {{ patient.name }} </h1>
+
+    <!---Doctor List-->
+    <h2>Doctor List</h2>
+    <div class="section_header">
+        <form method="GET" action="{{ url_for('patient_dashboard') }}">
+            <label>Search Doctor: <input type="text" name="doctor_search" placeholder="name/username"></label>
+            <button type="submit">Search</button>
+        </form>
+        
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Specialization</th>
+                <th>Status</th>
+                <th>Doctor,s Profile</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for doctor in doctors %}
+            <tr>
+                <td>{{ doctor.id }}</td>
+                <td>{{ doctor.name }}</td>
+                <td>{{ doctor.department.name }}</td>
+                <td>{{ doctor.user.status }}</td> <!--Active/Block-->
+            
+                <td class="actions">               
+                <a href="{{ url_for('doctor_profile', doctor_id=doctor.id) }}">View Profile</a>
+                
+                </td>
+            </tr>
+            {% else %}
+            <tr><td colspan="5">No doctor found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Book Your Appointment</h2>
+    <form method="POST" action="{{ url_for('book_appointment') }}" class="booking-form">
+        <label for="doctor">Select Doctor:</label>
+        <select id="doctor" name="doctor_id" required>
+            {% for doctor in doctors %}
+               {% if doctor.user.status == 'active' %}
+               <option value="{{ doctor.id }}">{{ doctor.name }} - {{ doctor.department.name }}</option>
+               {% endif %}
+            {% endfor %}
+        </select>
+        <br>
+        <label for="date_time">Select Date & Time:</label>
+        <input type="datetime-local" id="date_time" name="date_time" required>
+        <br>
+        <button type="submit">Book Appointment</button>
+    </form>
+    
+    
+
+    <!---Appointment table-->
+    <h2>Your Appointments</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Appointment ID</th>
+                <th>Doctor Name</th>
+                <th>Date & Time</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.id }}</td>
+                <td>{{ appointment.doctor.name }}</td>
+                <td>{{ appointment.appointment_date.strftime('%Y-%m-%d %H:%M') }}</td>
+                <td>{{ appointment.appointment_status}}</td>
+                <td class="action">
+                    {% if appointment.appointment_status == 'Booked' %}
+                    <a href="{{ url_for('cancel_appointment', appointment_id=appointment.id) }}">Cancel</a>
+                    {% elif appointment.appointment_status == 'Completed' and appointment.treatments %}
+                    <a href="{{ url_for('treatment_details', appointment_id=appointment.id) }}" class="btn btn-info">View Details</a>
+                    {% else %}
+                    Action not available
+                    {% endif %}
+                </td>
+            </tr>
+            {% else %}
+            <tr><td colspan="5">No appointments found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+
+    <!--Treatment History-->
+    <h2> Your Treatment Details</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Appointment Id</th>
+                <th>Treatment Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for treatment in treatments %}
+            <tr>
+                <td>{{ treatment.appointment.id }}</td>
+                <td>
+                    <a href ="{{ url_for('treatment_details', appointment_id=treatment.appointment_id) }}" class="btn btn-info">View Details</a>
+                </td>
+
+            </tr>
+            {% else %} <tr>
+                <td colspan="2">No treatment history found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    
+</body>
+</html>
