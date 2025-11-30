@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('doctor_dashboard') }}" class="right">Home</a>
+        <a href="{{ url_for('doctor_profile', doctor_id=doctor.id) }}" class="right">My Profile</a>
+        <a href="{{ url_for('logout') }}" class="right">Logout</a>
+    </div>
+    
+    <h2>Doctor Dashboard</h2>
+    <p>Welcome, Dr. {{ doctor.name }}</p>
+    <h3>Your Upcoming Appointments</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Appointment ID</th>
+                <th>Patient Name</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.id }}</td>
+                <td>{{ appointment.patient.name }}</td>
+                <td>{{ appointment.appointment_date }}</td>
+                <td>{{ appointment.appointment_status }}</td>
+                <td class="actions">
+                    {% if appointment.appointment_status == 'Booked' %}
+                    <a href="{{ url_for('update_appointment_status', appointment_id=appointment.id, status='Completed') }}">Completed</a>
+                    <a href="{{ url_for('update_appointment_status', appointment_id=appointment.id, status='Rejected') }}">Reject</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% else %}
+            <tr><td colspan="4">No upcoming appointments.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!--add treatment for patient-->
+    <h3>Add Treatment for Patients:</h3>
+    <form method="POST" action="{{ url_for('treatment') }}">
+        <label for="appointment">Select Appointment:</label>
+        <select id="appointment" name="appointment_id" required>
+            {% for appointment in completed_appointments %}
+            <option value="{{ appointment.id }}">
+                ID: {{ appointment.id }} - 
+                Patient: {{ appointment.patient.name }} - 
+                Date: {{ appointment.appointment_date }}
+            </option>
+            {% else %}
+            <option value="" disabled>No untreated completed appointments available.</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="diagnosis">Diagnosis:</label><br>
+        <textarea id="diagnosis" name="diagnosis" required></textarea><br>
+
+        <label for="prescription">Prescription:</label><br>
+        <textarea id="prescription" name="prescription" required></textarea><br>
+
+        <label for="notes">Notes:</label><br>
+        <textarea id="notes" name="notes"></textarea><br>
+
+        <button type="submit">Add Treatment</button>
+    </form>
+    <!---upcoming 7 days availability-->
+    <h3>Set Your Availability:</h3>
+        <form class="availability-form" method="POST" action="{{ url_for('availability') }}">
+            <label for="start_date">From Date:</label>
+            <input type="date" id="start_date" name="start_date" required>
+            
+            <label for="end_date">To Date:</label>
+            <input type="date" id="end_date" name="end_date" required>
+            
+            <button type="submit">Add Availability</button>
+        </form>
+    
+</body>
+</html>
