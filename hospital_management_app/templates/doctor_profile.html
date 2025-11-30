@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
+    
+</head>
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('dashboard') }}">Home</a>
+        <a href="{{ url_for('logout') }}" class="right">Logout</a>
+    </div>
+
+    <div class="profile-container">
+        <div class="profile-header">
+            <img src="{{ url_for('static', filename='doctor_avatar.png') }}" alt="Doctor Photo" class="profile-img">
+            <h1>Dr. {{ doctor.name }}</h1>
+            <span class="role-badge">Specialist</span>
+        </div>
+       
+       <div class="details-grid">
+            <div class="detail-box">
+                <strong>Specialization</strong>
+                <span>{{ doctor.department.name }}</span>
+            </div>
+            <div class="detail-box">
+                <strong>Experience</strong>
+                <span>{{ doctor.experience }} Years</span>
+            </div>
+            <div class="detail-box">
+                <strong>Email</strong>
+                <span>{{ doctor.user.email }}</span>
+            </div>
+            <div class="detail-box">
+                <strong>Contact Number</strong>
+                <span>{{ doctor.phone_number }}</span>
+            </div>
+            <div class="detail-box">
+                <strong>Status</strong>
+                <span >
+                    {{ doctor.user.status | title }}
+                </span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

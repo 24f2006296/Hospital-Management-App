@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Doctor Info</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+
+<body>
+    <div class="form-container">
+    <h1>Edit Doctor Info</h1>
+    <form method="POST" action="{{ url_for('edit_doctor', doctor_id=doctor.id) }}">
+
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" value="{{ doctor.name }}" required><br><br>
+
+        <label for="specialization">Specialization:</label><br>
+        <input type="text" id="specialization" name="specialization"  value="{{ doctor.department.name }}" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" value="{{ doctor.user.email }}"  required><br><br>
+
+        <label for="experience">Experience:</label><br>
+        <input type="number" id="experience" name="experience" value="{{ doctor.experience }}"  required><br><br>
+
+        <label for="contact">Contact Number:</label><br>
+        <input type="tel" id="contact" name="phone"  pattern="^\+?[0-9]{10,13}$" maxlength="13" placeholder="+91 9846170351" title="Enter with +91" value="{{ doctor.phone_number }}"  required><br><br>
+
+        <button type="submit">Update Details</button>
+    </form>
+        
+        <div class="links">
+            <a href="{{ url_for('admin_dashboard') }}" class="back-btn">← Cancel & Back</a>
+        </div>
+    </div>
+        
+</body>
+</html>

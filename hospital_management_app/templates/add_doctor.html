@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Doctor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="form-container">
+    <h1>Add Doctor</h1>
+    <form method="POST" action="{{ url_for('add_doctor') }}">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="specialization">Specialization:</label><br>
+        <input type="text" id="specialization" name="specialization" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="experience">Experience:</label><br>
+        <input type="number" id="experience" name="experience" required><br><br>
+
+        <label for="contact">Contact Number:</label><br>
+        <input type="tel" id="contact" name="contact"  pattern="^\+?[0-9]{10,13}$" maxlength="13" placeholder="+91 9846170351" title="Enter with +91" required><br><br>
+
+        <label for="password">Passsword:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <button type="submit">Add Doctor</button>
+    </form>
+        <div class="links">
+            <a href="{{ url_for('admin_dashboard') }}" class="back-btn">← Back to Dashboard</a>
+        </div>
+    </div>
+
+    
+</body>
+</html>

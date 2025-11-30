@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('patient_dashboard') }}">My Dashboard</a>
+        <a href="{{ url_for('logout') }}" class="right">Logout</a>
+        
+    </div>
+
+    <div class="profile-container">
+        <div class="profile-header">
+            <img src="{{ url_for('static', filename='patient_avatar.png') }}" alt="Patient Photo" class="profile-img">
+            <h1>{{ patient.name }}</h1>
+            <span class="role-badge">Patient</span>
+        </div>
+
+        <div class="details-grid">
+            <div class="detail-box">
+                <strong>Username</strong>
+                <span>{{ patient.user.username }}</span>
+            </div>
+            <div class="detail-box">
+                <strong>Email</strong>
+                <span>{{ patient.user.email }}</span>
+            </div>
+            <div class="detail-box">
+                <strong>Phone Number</strong>
+                <span>{{ patient.phone_number }}</span>
+            </div>
+        </div>
+
+        <div class="edit-section">
+            <h2>Edit Your Profile</h2>
+            <form method="POST" action="{{ url_for('patient_profile') }}">
+                <div>
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" value="{{ patient.name }}" required>
+                </div>
+                <div>
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" value="{{ patient.phone_number }}" required>
+                </div>
+                
+                <button type="submit">Update Profile</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

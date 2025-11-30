@@ -1,0 +1,119 @@
+/* --- Global Styles --- */
+:root {
+    --primary-green: #28a745;
+    --dark-green: #218838;
+    --light-green: #e9f7ef;
+    --primary-blue: #007bff; 
+    --text-dark: #333;
+    --white: #ffffff;
+    --light-gray: #f4f6f9;
+    --border-color: #ddd;
+    --shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light-gray);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+}
+
+/* --- Container for Forms --- */
+.form-container {
+    background-color: var(--white);
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 450px; 
+    margin: 20px;
+    border-top: 5px solid var(--primary-green);
+}
+
+/* --- Headings --- */
+h1 {
+    color: var(--primary-green);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+
+/* --- Labels & Inputs --- */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box; 
+    transition: border 0.3s;
+}
+
+input:focus {
+    border-color: var(--primary-green);
+    outline: none;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.2);
+}
+
+/* --- Buttons --- */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-green);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: var(--dark-green);
+}
+
+/* --- Links (Back, Login etc.) --- */
+.links {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.95rem;
+}
+
+a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.back-btn {
+    display: inline-block;
+    margin-top: 10px;
+    color: #666;
+}
+
+.back-btn:hover {
+    color: var(--text-dark);
+}
+

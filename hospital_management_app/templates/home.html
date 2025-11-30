@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+    
+</head>
+<body>
+
+    <nav class="navbar">
+        
+        <div class="logo-placeholder">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Sanjivni Hospital logo" style="height: 60px;">
+        </div>
+        <div class="nav-links">
+            <a href="{{ url_for('login') }}" class="btn-login">Login</a>
+            <a href="{{ url_for('register') }}" class="btn-register">Register as Patient</a>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="hero-content">
+            <h1>Modern Healthcare <br> <span class="highlight-text">Simplified for You.</span></h1>
+            <p>Book appointments, manage treatments, and connect with top doctors effortlessly. Your health journey starts here.</p>
+            
+            
+            <div class="contact-info">
+                📞 Emergency / Booking Call: +91 98765 43210
+            </div>
+
+            
+            <a href="{{ url_for('register') }}" class="hero-btn-large">Register Now</a>
+        </div>
+
+        <div class="hero-image-container">
+            <img src="{{ url_for('static', filename='doctor.png') }}" class="hero-doctor-img" alt="Trusted Doctor">
+            
+        </div>
+    </header>
+
+    
+    <section class="trusted-section">
+        <h3>Trusted by over <span class="trusted-highlight">100k+ patients</span> and <span class="trusted-highlight">30k+ doctors</span>.</h3>
+    </section>
+
+</body>
+</html>

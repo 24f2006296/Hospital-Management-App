@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treatment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='treatment.css') }}">
+</head>
+<body>
+    <h2>Treatment Details</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Appointment ID</th>
+                <th>Date</th>
+                <th>Diagnosis</th>
+                <th>Prescription</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if treatment %}
+            <tr>
+                <td>{{ treatment.appointment_id }}</td>
+                <td>{{ treatment.treatment_date.strftime('%d-%m-%Y') }}</td>
+                <td>{{ treatment.diagnosis }}</td>
+                <td>{{ treatment.prescription }}</td>
+                <td>{{ treatment.notes }}</td>
+            </tr>
+            {% else %}
+            <tr><td colspan="5">No treatment records found.</td></tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+    <div class="btn-container">
+        <a href="{{ url_for('patient_dashboard') }}" class="btn">← Back to Dashboard</a>
+    </div>
+    
+</body>
+</html>

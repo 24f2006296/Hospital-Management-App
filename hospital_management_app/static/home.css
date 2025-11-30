@@ -1,0 +1,168 @@
+:root {
+            --primary-green: #28a745; 
+            --dark-green: #218838;
+            --light-gray: #f8f9fa;
+            --text-dark: #333;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--white);
+            color: var(--text-dark);
+        }
+
+        /* --- Navbar Section --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-placeholder {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-green);
+            display: flex;
+            align-items: center;
+        }
+        
+
+        .nav-links a {
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: 0.3s;
+            margin-left: 10px;
+        }
+
+        .btn-login {
+            color: var(--primary-green);
+            border: 2px solid var(--primary-green);
+        }
+
+        .btn-login:hover {
+            background-color: var(--light-gray);
+        }
+
+        .btn-register {
+            background-color: var(--primary-green);
+            color: var(--white);
+        }
+
+        .btn-register:hover {
+            background-color: var(--dark-green);
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4rem 5%;
+            background: linear-gradient(to right, var(--light-gray), var(--white));
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .highlight-text {
+            color: var(--primary-green);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            font-weight: bold;
+            color: var(--dark-green);
+        }
+
+        .hero-btn-large {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            background-color: var(--primary-green);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hero-btn-large:hover {
+            background-color: var(--dark-green);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+        }
+
+        .hero-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Doctor Image Placeholder Box */
+        .image-placeholder {
+            width: 500px;
+            height: 500px;
+            background-color: #ddd;
+            border: 5px dashed #aaa;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #666;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        
+        
+         .hero-doctor-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+        } 
+        
+
+        /* --- Trusted By Section --- */
+        .trusted-section {
+            text-align: center;
+            padding: 3rem 5%;
+            background-color: var(--white);
+            border-top: 1px solid #eee;
+        }
+
+        .trusted-section h3 {
+            font-size: 1.8rem;
+            color: #555;
+            font-weight: normal;
+        }
+        
+        .trusted-highlight {
+             color: var(--primary-green);
+             font-weight: bold;
+        }
